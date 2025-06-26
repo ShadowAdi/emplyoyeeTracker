@@ -9,7 +9,7 @@ class CompanyCreate(BaseModel):
     password: str
 
 
-class CompanyLogin:
+class CompanyLogin(BaseModel):
     company_email: EmailStr
     password: str
 
@@ -20,14 +20,17 @@ class CompanyRead(BaseModel):
     company_name: str
     company_email: EmailStr
 
-    class Config:
-        orm_mode = True
+    model_config = {
+        "from_attributes": True  # 👈 Enables ORM support in Pydantic v2
+    }
 
 
 class CompanyWithEmployees(BaseModel):
     employees: List[EmployeeRead] = []
 
 
-class TokenSent:
-    company:CompanyRead
-    token:str
+class TokenSent(BaseModel):
+    message: str
+    success: bool
+    company_email: str
+    company_id:int 

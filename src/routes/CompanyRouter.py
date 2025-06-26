@@ -52,4 +52,10 @@ def login_company(
             status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid credentials"
         )
 
-    return {"message": "Login successful", "success": True, "company": companyFound}
+    return {
+        "message": "Login successful",
+        "success": True,
+        "company_email": companyFound.company_email,
+        "company_id":companyFound.id
+    }
+
