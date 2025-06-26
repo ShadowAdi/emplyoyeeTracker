@@ -1,16 +1,17 @@
 from fastapi import FastAPI
 from .database import create_db_and_tables
 from dotenv import load_dotenv
+from .routes import CompanyRouter
+
 load_dotenv()
 create_db_and_tables()
 
-app=FastAPI()
+app = FastAPI()
 
 
 @app.get("/")
 def read_root():
-    return {
-        "message":"Server Started",
-        "success":True
-    }
+    return {"message": "Server Started", "success": True}
 
+
+app.include_router(CompanyRouter.comapnyRouter)
