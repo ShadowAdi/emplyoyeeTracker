@@ -1,14 +1,16 @@
 from sqlmodel import SQLModel, Field, Relationship
-from typing import Optional
+from typing import Optional,TYPE_CHECKING
+
+
+if TYPE_CHECKING:
+    from .Company import Company
 
 
 class Employee(SQLModel, table=True):
-    id: int = Field(default=None, index=True)
+    id: Optional[int] = Field(default=None, primary_key=True)
     employee_name: str = Field(index=True)
     employee_email: str = Field(index=True)
     employee_password: str = Field(index=True)
     role: str = Field(index=True)
     company_id: Optional[int] = Field(default=None, foreign_key="company.id")
-
-
-Employee.company = Relationship(back_populates="company.id")
+    company: Optional["Company"] = Relationship(back_populates="employees")
