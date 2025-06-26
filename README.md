@@ -50,7 +50,7 @@ Submit daily work logs
 
 Clone the repo
 
-git clone https://github.com/yourusername/employeetracker_backend.git
+git clone [https://github.com/yourusername/employeetracker_backend.git](https://github.com/ShadowAdi/emplyoyeeTracker)
 cd employeetracker_backend
 
 Create virtual environment
