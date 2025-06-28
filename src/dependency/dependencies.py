@@ -28,4 +28,4 @@ def get_current_company(
     if not company_found:
         logger.error(f"Company not found for user_id: {user_id}")
         raise CustomAuthError("Company not found")
-    return company_found
+    return {"id": company_found.id, "email": company_found.company_email}
