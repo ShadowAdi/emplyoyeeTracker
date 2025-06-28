@@ -1,9 +1,11 @@
 from .CompanySchema import (
-    CompanyCreate,
-    CompanyRead,
-    CompanyWithEmployees,
-    CompanyLogin,
-    TokenSent,
+   CompanyCreate,
+   CompanyBase,
+   CompanyFull,
+   CompanyLogin,
+   CompanyRead,
+   CompanyResponse
+
 )
 from .EmployeeSchema import EmployeeRead, EmployeeCreate
 from .GeneralSchema import ResponseWrapper
