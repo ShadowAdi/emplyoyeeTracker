@@ -11,11 +11,13 @@ from .middlewares import (
 import uvicorn
 from starlette.exceptions import HTTPException as StarletteHTTPException
 from fastapi.exceptions import RequestValidationError, ResponseValidationError
+from .utils import add_cors
 
 load_dotenv()
 create_db_and_tables()
 
 app = FastAPI()
+add_cors(app=app)
 app.add_exception_handler(Exception, global_exception_handler)
 app.add_exception_handler(StarletteHTTPException, http_exception_handler)
 app.add_exception_handler(RequestValidationError, validation_exception_handler)
