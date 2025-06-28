@@ -1,9 +1,7 @@
-from fastapi import APIRouter, Depends, HTTPException, status
-from src.schema import CompanySchema, EmployeeSchema
-from src.models import Company
-from sqlmodel import Session, select, or_
+from fastapi import APIRouter, Depends
+from src.schema import CompanySchema
+from sqlmodel import Session 
 from src.database import get_session
-from src.utils import hash_password, verify_password
 from src.controllers import create_company, login_company
 
 comapnyRouter = APIRouter(prefix="/company")
