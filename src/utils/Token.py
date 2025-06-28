@@ -1,8 +1,5 @@
-from datetime import datetime, timedelta
-from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 from jose import JWTError, jwt, ExpiredSignatureError
-from sqlmodel import Session
 from dotenv import load_dotenv
 from src.config import logger
 from src.config import CustomAuthError
