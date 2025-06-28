@@ -4,37 +4,16 @@ from src.models import Company
 from sqlmodel import Session, select, or_
 from src.database import get_session
 from src.utils import hash_password, verify_password
-
+from src.controllers import create_company
 
 comapnyRouter = APIRouter(prefix="/company")
 
 
 @comapnyRouter.post("/", response_model=CompanySchema.CompanyRead)
-def create_company(
+async def create_company(
     company: CompanySchema.CompanyCreate, session: Session = Depends(get_session)
 ):
-    statement = select(Company).where(
-        or_(
-            Company.company_email == company.company_email,
-            Company.company_name == company.company_name,
-        )
-    )
-    companyFound = session.exec(statement=statement).first()
-    if companyFound:
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Company with same email or name already exists",
-        )
-    hashed_pw = hash_password(company.password)
-    db_company = Company(
-        company_email=company.company_email,
-        company_name=company.company_name,
-        password=hashed_pw,
-    )
-    session.add(db_company)
-    session.commit()
-    session.refresh(db_company)
-    return db_company
+    return await create_company(company=company, session=session)
 
 
 @comapnyRouter.post("/login", response_model=CompanySchema.TokenSent)
@@ -56,6 +35,5 @@ def login_company(
         "message": "Login successful",
         "success": True,
         "company_email": companyFound.company_email,
-        "company_id":companyFound.id
+        "company_id": companyFound.id,
     }
-
