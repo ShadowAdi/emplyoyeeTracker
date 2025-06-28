@@ -13,7 +13,7 @@ async def global_exception_handler(req: Request, exc: Exception):
         content={
             "success": False,
             "message": "An Internal Server Error Occurred.",
-            "errors": exc.errors(),
+            "errors": getattr(exc, 'errors', lambda: [])(),
             "error_id": error_id,
         },
     )

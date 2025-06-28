@@ -16,7 +16,7 @@ oauth2scheme = OAuth2PasswordBearer(tokenUrl="/company/login")
 
 def create_access_token(data: dict):
     to_encode = data.copy()
-    encoded_jwt = jwt.encode(to_encode, algorithm=ALGORITHM, HASH_SECRET=HASH_SECRET)
+    encoded_jwt = jwt.encode(to_encode, HASH_SECRET, algorithm=ALGORITHM)
     return encoded_jwt
 
 

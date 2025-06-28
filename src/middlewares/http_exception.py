@@ -13,7 +13,7 @@ async def http_exception_handler(req: Request, exc: StarletteHTTPException):
         content={
             "success": False,
             "message": exc.detail,
-            "errors": exc.errors(),
+           "errors": getattr(exc, 'errors', lambda: [])(),
             "error_id": error_id,
         },
     )

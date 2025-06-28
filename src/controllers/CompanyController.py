@@ -10,7 +10,7 @@ async def create_company_controller(
 ):
     try:
         statement = select(Company).where(
-            Company.company_email == company.company_email,
+            Company.company_email == company.company_email
         )
         companyFound = session.exec(statement=statement).first()
         if companyFound:
@@ -52,7 +52,7 @@ async def login_company_controller(
             raise CustomAuthError("Invalid credentials")
 
         token = create_access_token(
-            data={"sub": str(companyFound["id"]), "email": companyFound["email"]}
+            data={"sub": str(companyFound.id), "email": companyFound.company_email}
         )
 
         return {

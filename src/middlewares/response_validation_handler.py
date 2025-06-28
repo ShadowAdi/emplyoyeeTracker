@@ -17,7 +17,7 @@ async def response_validation_error(req: Request, exc: ResponseValidationError):
         content={
             "success": True,
             "message": f"Response Validation Failed: {traceback.format_exc()}",
-            "errors": exc.errors(),
+            "errors": getattr(exc, 'errors', lambda: [])(),
             "error_id": error_id,
         },
     )

@@ -13,7 +13,7 @@ async def validation_exception_handler(req: Request, exc: RequestValidationError
         content={
             "success": False,
             "messsage": "Validation Failed Error.",
-            "errors": exc.errors(),
+            "errors": getattr(exc, "errors", lambda: [])(),
             "error_id": error_id,
         },
     )
