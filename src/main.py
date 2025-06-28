@@ -2,12 +2,14 @@ from fastapi import FastAPI
 from .database import create_db_and_tables
 from dotenv import load_dotenv
 from .routes import CompanyRouter
+from .middlewares import validation_exception_handler,global_exception_handler,http_exception_handler
 import uvicorn
 
 load_dotenv()
 create_db_and_tables()
 
 app = FastAPI()
+
 
 
 @app.get("/")
