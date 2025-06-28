@@ -1,6 +1,5 @@
 from sqlmodel import create_engine, SQLModel, Session
 import os
-from src.models import Company, Employee
 from src.config import logger
 from dotenv import load_dotenv
 from datetime import datetime
