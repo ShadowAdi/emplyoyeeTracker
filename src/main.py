@@ -2,14 +2,22 @@ from fastapi import FastAPI
 from .database import create_db_and_tables
 from dotenv import load_dotenv
 from .routes import CompanyRouter
-from .middlewares import validation_exception_handler,global_exception_handler,http_exception_handler
+from .middlewares import (
+    validation_exception_handler,
+    global_exception_handler,
+    http_exception_handler,
+)
 import uvicorn
+from starlette.exceptions import HTTPException as StarletteHTTPException
+from fastapi.exceptions import RequestValidationError
 
 load_dotenv()
 create_db_and_tables()
 
 app = FastAPI()
-
+app.add_exception_handler(Exception, global_exception_handler)
+app.add_exception_handler(StarletteHTTPException, http_exception_handler)
+app.add_exception_handler(RequestValidationError, validation_exception_handler)
 
 
 @app.get("/")
@@ -20,5 +28,5 @@ def read_root():
 app.include_router(CompanyRouter.comapnyRouter)
 
 
-if __name__=="__main__":
-    uvicorn.run(app,host="0.0.0.0",port=8000)
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000)
