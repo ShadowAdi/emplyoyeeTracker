@@ -6,3 +6,4 @@ from .CompanySchema import (
     TokenSent,
 )
 from .EmployeeSchema import EmployeeRead, EmployeeCreate
+from .GeneralSchema import ResponseWrapper

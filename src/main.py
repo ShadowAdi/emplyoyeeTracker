@@ -12,6 +12,8 @@ import uvicorn
 from starlette.exceptions import HTTPException as StarletteHTTPException
 from fastapi.exceptions import RequestValidationError, ResponseValidationError
 from .utils import add_cors
+from .config import CustomAuthError
+from .middlewares import Custom_Auth_Exception_Handler
 
 load_dotenv()
 create_db_and_tables()
@@ -22,6 +24,7 @@ app.add_exception_handler(Exception, global_exception_handler)
 app.add_exception_handler(StarletteHTTPException, http_exception_handler)
 app.add_exception_handler(RequestValidationError, validation_exception_handler)
 app.add_exception_handler(ResponseValidationError, response_validation_error)
+app.add_exception_handler(CustomAuthError, Custom_Auth_Exception_Handler)
 
 
 @app.get("/")

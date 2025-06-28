@@ -2,3 +2,4 @@ from .global_middleware import global_exception_handler
 from .http_exception import http_exception_handler
 from .validation_exception_handler import validation_exception_handler
 from .response_validation_handler import response_validation_error
+from .custom_auth_middleware import Custom_Auth_Exception_Handler
