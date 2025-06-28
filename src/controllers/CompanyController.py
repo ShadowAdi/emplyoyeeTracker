@@ -5,7 +5,7 @@ from src.config import CustomAuthError, logger
 from src.utils import hash_password, verify_password
 
 
-async def create_company(company: CompanySchema.CompanyCreate, session: Session):
+async def create_company_controller(company: CompanySchema.CompanyCreate, session: Session):
     try:
         statement = select(Company).where(
             Company.company_email == company.company_email,
@@ -29,7 +29,7 @@ async def create_company(company: CompanySchema.CompanyCreate, session: Session)
         logger.error(f"Error Creating Company: {str(e)}")
 
 
-async def login_company(company: CompanySchema.CompanyLogin, session: Session):
+async def login_company_controller(company: CompanySchema.CompanyLogin, session: Session):
     try:
         statement = select(Company).where(
             Company.company_email == company.company_email

@@ -1,1 +1,1 @@
-from .CompanyController import create_company,login_company
+from .CompanyController import create_company_controller,login_company_controller
