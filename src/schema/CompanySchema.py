@@ -14,15 +14,12 @@ class CompanyLogin(BaseModel):
     password: str
 
 
-
 class CompanyRead(BaseModel):
     id: int
     company_name: str
     company_email: EmailStr
 
-    model_config = {
-        "from_attributes": True  
-    }
+    model_config = {"from_attributes": True}
 
 
 class CompanyWithEmployees(BaseModel):
@@ -32,4 +29,6 @@ class CompanyWithEmployees(BaseModel):
 class TokenSent(BaseModel):
     message: str
     success: bool
-    company:CompanyRead
+    company: CompanyRead
+    token: str
+    token_type: str
