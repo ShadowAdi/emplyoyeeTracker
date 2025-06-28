@@ -42,11 +42,6 @@ async def login_company(company: CompanySchema.CompanyLogin, session: Session):
         if not verify_password(company.password, companyFound.password):
             raise CustomAuthError("Invalid credentials")
 
-        return {
-            "message": "Login successful",
-            "success": True,
-            "company_email": companyFound.company_email,
-            "company_id": companyFound.id,
-        }
+        return {"message": "Login successful", "success": True, "company": companyFound}
     except Exception as e:
         logger.error(f"Error logging in company: {str(e)}")

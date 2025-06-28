@@ -21,7 +21,7 @@ class CompanyRead(BaseModel):
     company_email: EmailStr
 
     model_config = {
-        "from_attributes": True  # 👈 Enables ORM support in Pydantic v2
+        "from_attributes": True  
     }
 
 
@@ -32,5 +32,4 @@ class CompanyWithEmployees(BaseModel):
 class TokenSent(BaseModel):
     message: str
     success: bool
-    company_email: str
-    company_id:int 
+    company:CompanyRead
