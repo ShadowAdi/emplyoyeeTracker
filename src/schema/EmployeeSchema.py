@@ -11,6 +11,7 @@ class EmployeeBase(BaseModel):
 
 class EmployeeCreate(EmployeeBase):
     employee_password: str
+    join_code: str
 
 
 class EmployeeLogin(BaseModel):
