@@ -1,1 +1,1 @@
-from .dependencies import get_current_company
+from .dependencies import get_current_company,get_current_employee

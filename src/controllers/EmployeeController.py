@@ -3,12 +3,12 @@ from sqlmodel import Session, select, or_
 from src.models import Employee, Company
 from src.config import CustomAuthError, logger
 from src.utils import hash_password, verify_password, create_access_token
-
+from sqlalchemy import func
 
 async def create_employee(employee: EmployeeCreate, session: Session):
     try:
         companyExist = session.exec(
-            select(Company).where(Company.company_code.lower() == employee.join_code.lower())
+            select(Company).where(func.lower(Company.company_code) == employee.join_code.lower())
         ).first()
         if not companyExist:
             raise CustomAuthError("Company Do Not Exist. Is Joining Code Correct")
