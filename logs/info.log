@@ -209,3 +209,5 @@ TypeError: 'EmployeeLogin' object is not subscriptable
     raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
 AttributeError: 'Employee' object has no attribute 'company_email'. Did you mean: 'company_id'?
  
+2025-06-29 12:28:36,748 - INFO - Authenticated Employee Found 
+2025-06-29 12:28:37,095 - INFO - Session Has Been Closed 12:28:19 
