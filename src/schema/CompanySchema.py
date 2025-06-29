@@ -8,10 +8,11 @@ class CompanyBase(BaseModel):
     company_email: EmailStr
     createdAt: datetime
     updatedAt: datetime
-    address: str
-    companyLogo: str
-    phoneNumber: str
-    timezone: str
+    companyLogo: Optional[str] = None
+    address: Optional[str] = None
+    phoneNumber: Optional[str] = None
+    timezone: Optional[str] = "UTC"
+
 
 
 class CompanyCreate(CompanyBase):
