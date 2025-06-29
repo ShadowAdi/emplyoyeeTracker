@@ -1,9 +1,10 @@
 from sqlmodel import SQLModel, Field, Relationship
-from typing import Optional,TYPE_CHECKING
+from typing import Optional,TYPE_CHECKING,List
 from datetime import datetime
 
 if TYPE_CHECKING:
     from .Company import Company
+    from .Session import Session
 
 
 class Employee(SQLModel, table=True):
@@ -14,6 +15,7 @@ class Employee(SQLModel, table=True):
     role: str = Field(index=True)
     company_id: Optional[int] = Field(default=None, foreign_key="company.id")
     company: Optional["Company"] = Relationship(back_populates="employees")
+    sessions: List["Session"] = Relationship(back_populates="employee")
     address: str | None = Field(index=True, default="")
     phoneNumber: str | None = Field(index=True, default="")
     timezone: str = Field(index=True, default="UTC")
