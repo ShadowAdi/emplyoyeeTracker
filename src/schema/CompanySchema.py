@@ -24,6 +24,7 @@ class CompanyLogin(BaseModel):
 
 class CompanyRead(CompanyBase):
     id: int
+    company_code: str
     model_config = {"from_attributes": True}
 
 
@@ -38,6 +39,7 @@ class TokenSent(BaseModel):
     company: CompanyRead
     token: str
     token_type: str
+
 
 class CompanyResponse(BaseModel):
     success: bool
