@@ -6,8 +6,6 @@ from datetime import datetime
 class CompanyBase(BaseModel):
     company_name: str
     company_email: EmailStr
-    createdAt: datetime
-    updatedAt: datetime
     companyLogo: Optional[str] = None
     address: Optional[str] = None
     phoneNumber: Optional[str] = None
@@ -26,6 +24,8 @@ class CompanyLogin(BaseModel):
 
 class CompanyRead(CompanyBase):
     id: int
+    createdAt: datetime
+    updatedAt: datetime
     company_code: str
     model_config = {"from_attributes": True}
 

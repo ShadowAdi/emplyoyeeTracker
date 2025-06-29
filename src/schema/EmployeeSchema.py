@@ -7,8 +7,6 @@ class EmployeeBase(BaseModel):
     employee_name: str
     employee_email: EmailStr
     role: str
-    createdAt: datetime
-    updatedAt: datetime
     address: Optional[str] = None
     phoneNumber: Optional[str] = None
     timezone: Optional[str] = "UTC"
@@ -28,11 +26,12 @@ class EmployeeRead(EmployeeBase):
     id: int
     model_config = {"from_attributes": True}
     company_id: int
-    company: "CompanyRead"  # forward reference
+    company: "CompanyRead"  
 
 
 class EmployeeFull(EmployeeRead):
     company: Optional["CompanyRead"] = []
+    sessions: Optional["SessionRead"] = []
     model_config = {"from_attributes": True}
 
 
@@ -55,3 +54,4 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from .CompanySchema import CompanyRead
     from .EmployeeSchema import EmployeeRead
+    from .SessionSchema import SessionRead
