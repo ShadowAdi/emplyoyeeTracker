@@ -18,6 +18,7 @@ async def create_company_controller(
                 "Company Already Exists with the email. Try To Login!"
             )
         hashed_pw = hash_password(company.password)
+        
         db_company = Company(
             company_email=company.company_email,
             company_name=company.company_name,
