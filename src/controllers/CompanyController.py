@@ -5,6 +5,7 @@ from src.config import CustomAuthError, logger
 from src.utils import hash_password, verify_password, create_access_token
 import secrets
 
+
 async def create_company_controller(
     company: CompanySchema.CompanyCreate, session: Session
 ):
@@ -18,13 +19,13 @@ async def create_company_controller(
                 "Company Already Exists with the email. Try To Login!"
             )
         hashed_pw = hash_password(company.password)
-        join_code=secrets.token_urlsafe(8)
+        join_code = secrets.token_urlsafe(8).lower()
 
         db_company = Company(
             company_email=company.company_email,
             company_name=company.company_name,
             password=hashed_pw,
-            company_code=join_code
+            company_code=join_code,
         )
         session.add(db_company)
         session.commit()
