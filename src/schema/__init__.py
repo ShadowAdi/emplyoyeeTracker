@@ -3,8 +3,8 @@ from .CompanySchema import (
     CompanyBase,
     CompanyFull,
     CompanyLogin,
-    CompanyRead,
     CompanyResponse,
+    CompanyRead
 )
 from .EmployeeSchema import (
     EmployeeCreate,
@@ -15,3 +15,8 @@ from .EmployeeSchema import (
     TokenSentEmployee,
     EmployeeRead,
 )
+
+CompanyRead.model_rebuild()
+CompanyFull.model_rebuild()
+EmployeeRead.model_rebuild()
+EmployeeFull.model_rebuild()
