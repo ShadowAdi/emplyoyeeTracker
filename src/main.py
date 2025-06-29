@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from .database import create_db_and_tables
 from dotenv import load_dotenv
-from .routes import CompanyRouter
+from .routes import CompanyRouter, EmployeeRouter
 from .middlewares import (
     validation_exception_handler,
     global_exception_handler,
@@ -33,6 +33,7 @@ def read_root():
 
 
 app.include_router(CompanyRouter.comapnyRouter)
+app.include_router(EmployeeRouter.employeeRouter)
 
 
 if __name__ == "__main__":
