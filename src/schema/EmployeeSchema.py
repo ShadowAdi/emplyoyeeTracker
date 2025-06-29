@@ -1,10 +1,16 @@
 from pydantic import BaseModel, EmailStr
 from typing import Optional
-
+from datetime import datetime
 class EmployeeBase(BaseModel):
     employee_name: str
     employee_email: EmailStr
     role: str
+    createdAt: datetime
+    updatedAt: datetime
+    address: str
+    phoneNumber: str
+    timezone: str
+
 
 class EmployeeCreate(EmployeeBase):
     employee_password: str
